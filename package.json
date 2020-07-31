@@ -1,12 +1,12 @@
 {
-  "name": "botkit-pieterbot",
+  "name": "botkit-michiel",
   "version": "1.0.0",
   "description": "",
   "main": "bot.js",
   "scripts": {
     "start": "nodemon bot.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "expose": "lt -s pieterbot585 -p 3000 --print-requests -h http://localtunnel.me --local-https false",
+    "expose": "lt -s michielbot585 -p 3000 --print-requests -h http://localtunnel.me --local-https false",
     "faker": "node dev/faker.js"
   },
   "dependencies": {

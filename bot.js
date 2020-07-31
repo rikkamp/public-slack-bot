@@ -1,5 +1,9 @@
 const { Botkit } = require('botkit');
-const { SlackAdapter, SlackMessageTypeMiddleware, SlackEventMiddleware } = require('botbuilder-adapter-slack');
+const {
+  SlackAdapter,
+  SlackMessageTypeMiddleware,
+  SlackEventMiddleware,
+} = require('botbuilder-adapter-slack');
 const { MongoDbStorage } = require('botbuilder-storage-mongodb');
 
 const mongoose = require('./lib/mongo');
@@ -18,7 +22,7 @@ adapter.use(new SlackMessageTypeMiddleware());
 let storage = null;
 if (process.env.MONGO_URI) {
   storage = mongoStorage = new MongoDbStorage({
-    url : process.env.MONGO_URI,
+    url: process.env.MONGO_URI,
   });
 }
 
@@ -26,7 +30,7 @@ const controller = new Botkit({
   webhook_uri: '/api/messages',
   adapter: adapter,
   storage,
-  activity: {}
+  activity: {},
 });
 
 controller.ready(() => {
@@ -64,7 +68,7 @@ controller.webserver.get('/install/auth', async (req, res) => {
     tokenCache[results.team_id] = results.bot.bot_access_token;
     userCache[results.team_id] = results.bot.bot_user_id;
     res.json('Success! Bot installed.');
-  } catch ( err ) {
+  } catch (err) {
     console.error('OAUTH ERROR:', err);
     res.status(401);
     res.send(err.message);
@@ -78,13 +82,10 @@ controller.webserver.get('/public/images/:imageId', (req, res) => {
 let tokenCache = {};
 let userCache = {};
 
-if ( process.env.TOKENS ) {
+if (process.env.TOKENS) {
   tokenCache = JSON.parse(process.env.TOKENS);
 }
 
-if ( process.env.USERS ) {
+if (process.env.USERS) {
   userCache = JSON.parse(process.env.USERS);
 }
-
-
-

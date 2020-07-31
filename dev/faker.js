@@ -8,7 +8,6 @@ const QuoteModel = mongoose.model('Quote');
 require('dotenv').config();
 const documentAmount = argv.documents || 50;
 
-
 if (argv.flush) {
   (async () => {
     const res = await QuoteModel.deleteMany({}).exec();

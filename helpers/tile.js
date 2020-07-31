@@ -2,10 +2,10 @@ const fs = require('fs');
 const PImage = require('canvas');
 const CanvasTextWrapper = require('canvas-text-wrapper').CanvasTextWrapper;
 
-const generateTile = (item) => {
+const generateTile = item => {
   return new Promise(async (resolve, reject) => {
-    PImage.registerFont(__dirname + '/../public/fonts/slab.ttf', {family: 'Slab'});
-    PImage.registerFont(__dirname + '/../public/fonts/curly.ttf', {family: 'Curly'});
+    PImage.registerFont(__dirname + '/../public/fonts/slab.ttf', { family: 'Slab' });
+    PImage.registerFont(__dirname + '/../public/fonts/curly.ttf', { family: 'Curly' });
 
     const canvas = PImage.createCanvas(400, 400);
     const ctx = canvas.getContext('2d');
@@ -21,10 +21,10 @@ const generateTile = (item) => {
       textAlign: 'center',
       verticalAlign: 'middle',
       paddingX: 10,
-      lineHeight: 1.4
+      lineHeight: 1.4,
     });
 
-    CanvasTextWrapper(canvas, 'Just Pieter Things', {
+    CanvasTextWrapper(canvas, 'Just Michiel Things', {
       font: '20px Curly',
       textAlign: 'right',
       verticalAlign: 'bottom',
@@ -35,14 +35,14 @@ const generateTile = (item) => {
     // ctx.fillText(item.quote, 250, 274);
     const out = fs.createWriteStream(__dirname + '/../public/images/' + item._id + '.png');
     const stream = canvas.createPNGStream();
-    stream.on('data', (chunk) => {
+    stream.on('data', chunk => {
       out.write(chunk);
     });
 
     stream.on('end', () => {
       resolve();
-    })
-  })
+    });
+  });
 };
 
 module.exports = generateTile;

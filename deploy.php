@@ -4,10 +4,10 @@ namespace Deployer;
 require 'recipe/common.php';
 
 // Project name
-set('application', 'pieterbot');
+set('application', 'michielbot');
 
 // Project repository
-set('repository', 'git@gitlab.com:iolabsnl/pieterbot.git');
+set('repository', 'https://github.com/rikkamp/public-slack-bot.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true);
@@ -22,8 +22,8 @@ set('allow_anonymous_stats', false);
 
 // Hosts
 
-host('bot.iolabs.nl')
-    ->set('deploy_path', '/var/www/pieterbot')
+host(getenv('host'))
+    ->set('deploy_path', '/var/www/michielbot')
     ->user('root')
     ->port(22)
     ->configFile('~/.ssh/config')
